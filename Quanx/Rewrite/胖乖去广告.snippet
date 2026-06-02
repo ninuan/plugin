@@ -4,7 +4,8 @@
 ^https:\/\/userapi\.qiekj\.com\/local-life\/category$ url reject-dict
 ^https:\/\/userapi\.qiekj\.com\/integralGoods\/queryIntegralGoodsPage$ url reject-dict
 ^https:\/\/userapi\.qiekj\.com\/task\/list$ url reject-dict
-^https:\/\/userapi\.qiekj\.com\/local-life\/tab-order$ url jsonjq-response-body data []
-^https:\/\/userapi\.qiekj\.com\/integralGoods\/queryIntegralGoodsCategoryList$ url jsonjq-response-body data []
+
+^https:\/\/userapi\.qiekj\.com\/local-life\/tab-order$ url jsonjq-response-body '.data = []'
+^https:\/\/userapi\.qiekj\.com\/integralGoods\/queryIntegralGoodsCategoryList$ url jsonjq-response-body '.data = []'
 
 hostname = userapi.qiekj.com
