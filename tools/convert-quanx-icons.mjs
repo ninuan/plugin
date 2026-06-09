@@ -15,6 +15,7 @@ Defaults:
   output dir        mini/Alpha
   icon json         mini/icon.json
   size              144
+  fuzz              38
 
 Options:
   --out <dir>       Output directory for converted PNG files
@@ -37,7 +38,7 @@ function parseArgs(argv) {
     jsonFile: "mini/icon.json",
     baseUrl: null,
     size: 144,
-    fuzz: 8,
+    fuzz: 38,
     removeBg: true,
     dropWhite: false,
     trim: true,
@@ -127,24 +128,40 @@ function outputName(inputName) {
   return `${safeBase || "icon"}.png`;
 }
 
+function imageSize(inputPath) {
+  const output = execFileSync("magick", ["identify", "-format", "%w %h", inputPath], { encoding: "utf8" }).trim();
+  const [width, height] = output.split(/\s+/).map((value) => Number.parseInt(value, 10));
+  if (!Number.isInteger(width) || !Number.isInteger(height) || width <= 0 || height <= 0) {
+    throw new Error(`Could not read image size for ${inputPath}`);
+  }
+  return { width, height };
+}
+
+function edgeFloodfillDraw(width, height) {
+  const maxX = width - 1;
+  const maxY = height - 1;
+  const midX = Math.floor(maxX / 2);
+  const midY = Math.floor(maxY / 2);
+  return [
+    [midX, 0],
+    [midX, maxY],
+    [0, midY],
+    [maxX, midY],
+    [0, 0],
+    [maxX, 0],
+    [0, maxY],
+    [maxX, maxY],
+  ]
+    .map(([x, y]) => `color ${x},${y} floodfill`)
+    .join(" ");
+}
+
 function convertIcon(inputPath, outputPath, options) {
   const args = [inputPath, "-auto-orient", "-alpha", "set"];
 
   if (options.removeBg) {
-    args.push(
-      "-bordercolor",
-      "white",
-      "-border",
-      "1x1",
-      "-fuzz",
-      `${options.fuzz}%`,
-      "-fill",
-      "none",
-      "-draw",
-      "color 0,0 floodfill",
-      "-shave",
-      "1x1",
-    );
+    const { width, height } = imageSize(inputPath);
+    args.push("-fuzz", `${options.fuzz}%`, "-fill", "none", "-draw", edgeFloodfillDraw(width, height));
   }
 
   if (options.dropWhite) {
