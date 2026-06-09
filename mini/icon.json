@@ -3,15 +3,15 @@
     "description": "Personal icons for Quantumult X.",
     "icons": [
         {
-            "name": "pangguai",
+            "name": "pangguai.png",
             "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai.png"
         },
         {
-            "name": "pangguai1",
+            "name": "pangguai1.png",
             "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai1.png"
         },
         {
-            "name": "pangguai_qx",
+            "name": "pangguai_qx.png",
             "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai_qx.png"
         },
         {
