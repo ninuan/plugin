@@ -4,23 +4,27 @@
     "icons": [
         {
             "name": "pangguai",
-            "url": "https://raw.githubusercontent.com/ninuan/plugin/main/mini/Alpha/pangguai.png"
+            "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai.png"
         },
         {
             "name": "pangguai1",
-            "url": "https://raw.githubusercontent.com/ninuan/plugin/main/mini/Alpha/pangguai1.png"
+            "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai1.png"
         },
         {
             "name": "pangguai_qx",
-            "url": "https://raw.githubusercontent.com/ninuan/plugin/main/mini/Alpha/pangguai_qx.png"
+            "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/pangguai_qx.png"
         },
         {
             "name": "google",
-            "url": "https://raw.githubusercontent.com/crossutility/Quantumult-X/master/icon-samples/google.PNG"
+            "url": "https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/icon-samples\/google.PNG"
         },
         {
             "name": "jianxun",
-            "url": "https://raw.githubusercontent.com/ninuan/plugin/main/mini/Alpha/jianxun.png"
+            "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/jianxun.png"
+        },
+        {
+            "name": "boxjs",
+            "url": "https:\/\/raw.githubusercontent.com\/ninuan\/plugin\/main\/mini\/Alpha\/boxjs.png"
         }
     ]
 }

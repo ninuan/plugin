@@ -125,7 +125,7 @@ function iconFiles(inputDir) {
 function outputName(inputName) {
   const parsed = path.parse(inputName);
   const safeBase = parsed.name.trim().replace(/\s+/g, "_").replace(/[/:\\]/g, "_");
-  return `${safeBase || "icon"}.png`;
+  return `${safeBase || "icon"}`;
 }
 
 function imageSize(inputPath) {
