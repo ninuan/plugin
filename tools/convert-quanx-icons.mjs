@@ -23,6 +23,8 @@ Options:
   --size <px>       Square canvas size
   --fuzz <percent>  White-background flood fill tolerance
   --no-bg           Do not remove edge-connected white background
+  --drop-white      Remove all near-white pixels, useful for white app tiles
+  --no-trim         Do not trim transparent padding before centering
   --no-json         Convert only, do not update icon JSON
   --help            Show this help
 `);
@@ -37,6 +39,8 @@ function parseArgs(argv) {
     size: 144,
     fuzz: 8,
     removeBg: true,
+    dropWhite: false,
+    trim: true,
     updateJson: true,
   };
 
@@ -49,6 +53,14 @@ function parseArgs(argv) {
     }
     if (arg === "--no-bg") {
       options.removeBg = false;
+      continue;
+    }
+    if (arg === "--drop-white") {
+      options.dropWhite = true;
+      continue;
+    }
+    if (arg === "--no-trim") {
+      options.trim = false;
       continue;
     }
     if (arg === "--no-json") {
@@ -135,6 +147,14 @@ function convertIcon(inputPath, outputPath, options) {
     );
   }
 
+  if (options.dropWhite) {
+    args.push("-fuzz", `${options.fuzz}%`, "-transparent", "white");
+  }
+
+  if (options.trim) {
+    args.push("-trim", "+repage");
+  }
+
   args.push(
     "-resize",
     `${options.size}x${options.size}`,
@@ -184,7 +204,8 @@ function updateIconJson(jsonFile, converted, baseUrl) {
     else data.icons.push(entry);
   }
 
-  writeFileSync(jsonFile, `${JSON.stringify(data, null, 4)}\n`);
+  const json = JSON.stringify(data, null, 4).replace(/\//g, "\\/");
+  writeFileSync(jsonFile, `${json}\n`);
 }
 
 function main() {
