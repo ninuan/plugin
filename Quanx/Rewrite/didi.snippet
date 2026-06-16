@@ -18,7 +18,7 @@ ip-cidr, 116.85.1.17/32, reject
 ip-cidr, 116.85.1.22/32, reject
 ip-cidr, 116.85.3.25/32, reject
 
-^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core\? url jsonjq-response-body 'del(.data.order_cards.nav_list_card) | .data.order_cards_list |= map(select(. != "nav_list_card"))'
+^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core\? url jsonjq-response-body 'del(.data.order_cards.nav_list_card) | .data.order_cards_list |= map(select(. != "nav_list_card"))'
 
 
 hostname = conf.diditaxi.com.cn
