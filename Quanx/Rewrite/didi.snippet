@@ -1,7 +1,7 @@
 #!name = 滴滴
 #!update = 2026/06/15
 
-^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core\? url jsonjq-response-body '.data = []'
+^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core\? url jsonjq-response-body 'del(.data.order_cards.nav_list_card) | .data.order_cards_list |= map(select(. != "nav_list_card"))'
 
 
 hostname = conf.diditaxi.com.cn
