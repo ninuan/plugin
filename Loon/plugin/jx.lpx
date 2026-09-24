@@ -1,0 +1,15 @@
+#!name = 简讯
+#!desc = 简讯 API 插件
+#!author = Example
+#!loon_version = 3.5.1(999)
+#!system = iOS,iPadOS,macOS
+#!type = normal
+
+[Rewrite]
+request if ${url} ~= /^https?:\/\/api\.tipsoon\.com\/api\/v1\/top\/ad(?:\?|$)/i then reject_img()
+
+[Script]
+response if ${url} ~= /^https:\/\/api\.tipsoon\.com\/api\/v1\/user\/info(?:\?|$)/i then script("https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/JX.js") with tag="VIP", requires_body=true
+
+[Mitm]
+hostname = api.tipsoon.com
