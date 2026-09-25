@@ -1,0 +1,12 @@
+#!name = Telegram
+#!desc = Telegram重定向
+#!author = ninuan
+#!loon_version = 3.5.1(999)
+
+[Argument]
+item = select,"tg","nagram"
+
+[Rewrite]
+request if ${url} ~= /^https:\/\/t\.me\/([A-Za-z][A-Za-z0-9_]{3,30}[A-Za-z0-9])\/?$/ as item then redirect(307, "${app}://resolve?domain=${item.1}")
+
+request if ${url} ~= /^https:\/\/t\.me\/\+([A-Za-z0-9_-]+)\/?$/ as item then redirect(307, "${app}://join?invite=${item.1}")
